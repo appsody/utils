@@ -1,17 +1,24 @@
 const fs = require('fs');
 
-const path = "../appsody_reports/"
+const folderPath = "../appsody_reports/"
 
 module.exports = {
     createLogFile: function(extension, array, cb) {
 
-        ensurePathExists(path, 0744, function(err) {
+        ensurePathExists(folderPath, 0744, function(err) {
             if (err) {
                 cb(err)
             }
-            else {
-                d = new Date().toISOString().slice(0,10);
-                var filename = `${path}${d}_${extension}`
+        });
+        
+        d = new Date().toISOString().slice(0,10);
+
+        var filePath = `${folderPath}${d}/`
+        ensurePathExists(filePath, 0744, function(err) {
+            if (err) {
+                cb(err)
+            } else {
+                var filename = `${filePath}${extension}`
 
                 writeFile(filename, array, function(err) {
                     if (err) {
@@ -19,7 +26,7 @@ module.exports = {
                     } 
                 });
             }
-        });
+        })
     }
   };
 

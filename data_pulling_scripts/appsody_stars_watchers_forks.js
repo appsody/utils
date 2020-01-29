@@ -1,5 +1,13 @@
 const { graphql } = require('@octokit/graphql')
-const tools = require('./tools');
+const tools = require('../data_pulling_utils/tools');
+
+
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
 
 const queryTotals = async (repo, org) => {
   const graphqlWithAuth = graphql.defaults({
@@ -35,13 +43,29 @@ const queryTotals = async (repo, org) => {
       "watchers": data.repository.watchers.totalCount,
       "forks": data.repository.forks.totalCount,
     }
-
-    tools.createLogFile(`stars_watchers_forks_${repo}.json`, [single], function(err) {
-      console.log(err);
-   });
+    return single;
   }
 }
 
-// TODO: Improve to make all append to the same logfile
-queryTotals('appsody','appsody');
-queryTotals('stacks','appsody')
+var queries = [
+  ['appsody', 'stacks'],
+  ['appsody', 'appsody']
+];
+
+const callQueries = async() => {
+
+  results = [];
+  const start = async () => {
+    await asyncForEach(queries, async (q) => {
+      let res = await(queryTotals(q[1],q[0]));
+      results.push(res)
+    });
+    
+    tools.createLogFile(`stars_watchers_forks.json`, results, function(err) {
+      console.log(err);
+    });
+  }
+  start();
+}
+
+callQueries();
