@@ -36,14 +36,11 @@ module.exports = {
             return num;
         }
     },
-    createComparisonFile: function(filename, newRes, id) {
-        var lastMonth = moment().subtract(1, 'months').toDate();
-        readableLastMonth = `${this.addZeroPrefix(lastMonth.getFullYear())}-${this.addZeroPrefix((lastMonth.getMonth() + 1))}-${this.addZeroPrefix(lastMonth.getDate())}`;
-        
-        oldResPath = `../appsody_reports/${readableLastMonth}/${filename}.json`;
+    createComparisonFile: function(filename, newRes, id, previous) {
+        oldResPath = `../appsody_reports/${previous}/${filename}.json`;
         fs.access(oldResPath, fs.F_OK, (err) => {
             if (err) {
-                console.error("No file for last month found.")
+                console.error("No file found to make comparison.")
                 return
             }
             

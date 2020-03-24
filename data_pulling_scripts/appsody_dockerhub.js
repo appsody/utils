@@ -1,7 +1,7 @@
 const axios = require('axios');
 const tools = require('../data_pulling_utils/tools');
 
-
+const args = process.argv.slice(2)
 
 retrieveData();
 
@@ -32,7 +32,9 @@ retrieveData();
             console.log(err);
          });
 
-         tools.createComparisonFile("dockerhub_appsody", dockerHubResultsArray, "name");
+         if(args[0] != undefined) {
+             tools.createComparisonFile("dockerhub_appsody", dockerHubResultsArray, "name", args[0]);
+         }
 
     })
     .catch((error) => {

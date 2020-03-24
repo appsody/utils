@@ -1,6 +1,7 @@
 const { graphql } = require('@octokit/graphql')
 const tools = require('../data_pulling_utils/tools');
 
+const args = process.argv.slice(2)
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -68,7 +69,9 @@ const callQueries = async () => {
           console.log(err);
       });
       
-      tools.createComparisonFile("stars_watchers_forks", results, "repo");
+      if(args[0] != undefined) {
+        tools.createComparisonFile("stars_watchers_forks", results, "repo", args[0]);
+      }
   }
   start();
 }

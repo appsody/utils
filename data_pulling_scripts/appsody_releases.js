@@ -1,6 +1,8 @@
 const axios = require('axios');
 const tools = require('../data_pulling_utils/tools');
 
+const args = process.argv.slice(2)
+
 retrieveData();
 
  async function retrieveData() {
@@ -31,7 +33,9 @@ retrieveData();
             console.log(err);
          });
 
-         tools.createComparisonFile("releases_appsody", releaseResultsArray, "cli_binary");
+         if(args[0] != undefined) {
+             tools.createComparisonFile("releases_appsody", releaseResultsArray, "cli_binary", args[0]);
+         }
 
     })
     .catch((error) => {
