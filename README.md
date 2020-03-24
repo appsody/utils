@@ -1,4 +1,6 @@
 # utils
+
+## metrics
 Repository to store various utilities related to Appsody project
 
 
@@ -8,8 +10,12 @@ In order to execute any of these scripts, you'll need to first export your GitHu
 
   - run_all.sh
   
-    Runs all of the `.js` scripts in this folder consecutively, then runs `../data_pulling_utils/json_to_csv.py` which creates a `.csv` file for any comparisons made against the previous month (if the `.json` files from last month are found). 
-    In order for the comparison to be made, the data from the previous month would have had to have been collected on the same day (e.g 01/12/19 and 01/01/2020); gathering data after the 28th day of the month wouldn't be recommended.
+    Usage:
+      - Can be passed a date in the form of `YYY-MM-DD`. This date would have to correspond to a folder in `metrics/appsody_reports/` which contains data from a previous run, to provide the total amount gained/lost since that date. 
+      
+      - For example: `sh run_all.sh 2020-02-10` would give the results of the current most up-to-date information, as well as a data compared to the results on the 10th of February 2020.
+  
+    Runs all of the `.js` scripts in this folder consecutively, then runs `../data_pulling_utils/json_report_to_csv.py` which creates a `.csv` file for any comparisons again'st the given date (if the `.json` files from that date are found).
     
   - appsody_dockerhub.js
   

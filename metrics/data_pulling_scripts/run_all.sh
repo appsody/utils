@@ -11,4 +11,4 @@ do
     `node $entry $COMPARISON`
   fi
 done
-`python ../data_pulling_utils/json_to_csv.py ../appsody_reports/`
+`python ../data_pulling_utils/json_report_to_csv.py ../appsody_reports/`

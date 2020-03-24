@@ -1,5 +1,5 @@
 const axios = require('axios');
-const tools = require('../data_pulling_utils/tools');
+const tools = require('../data_pulling_utils/data_pulling_tools');
 
 const args = process.argv.slice(2)
 
