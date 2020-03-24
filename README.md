@@ -11,7 +11,7 @@ In order to execute any of these scripts, you'll need to first export your GitHu
   - run_all.sh
   
     Usage:
-      - Can be passed a date in the form of `YYY-MM-DD`. This date would have to correspond to a folder in `metrics/appsody_reports/` which contains data from a previous run, to provide the total amount gained/lost since that date. 
+      - Can be passed a date in the form of `YYY-MM-DD`. This date would have to correspond to a folder in `metrics/appsody_reports/` which contains data from a previous run, to provide the total amount downloads (dockerhub & GitHub), or gained/lost (stars/watchers/forks) since that date. 
       
       - For example: `sh run_all.sh 2020-02-10` would give the results of the current most up-to-date information, as well as a data compared to the results on the 10th of February 2020.
   

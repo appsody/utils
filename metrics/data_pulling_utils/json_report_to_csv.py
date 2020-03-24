@@ -16,7 +16,7 @@ if sys.argv[1] is not None:
       break
 
   for file in f:
-    if ".csv" not in file and "_comparison" in file:
+    if ".csv" not in file:
       fileInput = targetFolder + file
       fileOutput = fileInput[:-5] + ".csv"
 
