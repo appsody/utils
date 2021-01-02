@@ -1,0 +1,3 @@
+/metrics/appsody_reports
+/metrics/node_modules
+.DS_Store
